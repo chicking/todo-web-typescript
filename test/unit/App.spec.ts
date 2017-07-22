@@ -8,11 +8,11 @@ describe('App.vue', () => {
       el: div
     })
 
-    expect(vm.name).to.equals('World')
+    expect(vm.name).to.equals('Todo')
 
     const $firstDiv = vm.$el.querySelector('h1.title')
     expect($firstDiv).is.not.be.null
-    expect($firstDiv.textContent.trim()).to.equals('Hello World!')
+    expect($firstDiv.textContent.trim()).to.equals('Hello Todo!')
 
     vm.name = 'Vue'
     vm.$nextTick(() => {
