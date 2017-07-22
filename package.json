@@ -4,6 +4,7 @@
   "description": "A Todo web with TypeScript",
   "scripts": {
     "build": "webpack",
+    "dev": "webpack-dev-server --hot --inline",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "gongzza <gz.us.to@gmail.com>",
