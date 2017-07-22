@@ -10,14 +10,13 @@ describe('App.vue', () => {
 
     expect(vm.name).to.equals('World')
 
-    const $firstDiv = vm.$el.querySelector('div:first-child')
-
-    expect($firstDiv).to.not.be.null
-    expect($firstDiv.textContent).to.equals('Hello World!')
+    const $firstDiv = vm.$el.querySelector('h1.title')
+    expect($firstDiv).is.not.be.null
+    expect($firstDiv.textContent.trim()).to.equals('Hello World!')
 
     vm.name = 'Vue'
     vm.$nextTick(() => {
-      expect($firstDiv.textContent).to.equals('Hello Vue!')
+      expect($firstDiv.textContent.trim()).to.equals('Hello Vue!')
       done()
     })
   })
