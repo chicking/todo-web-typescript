@@ -5,7 +5,8 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "strict": true,
-    "noImplicitReturns": true
+    "noImplicitReturns": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "src/**/*"
