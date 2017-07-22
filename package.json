@@ -1,0 +1,10 @@
+{
+  "name": "todo-web-typescript",
+  "version": "1.0.0",
+  "description": "A Todo web with TypeScript",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "gongzza <gz.us.to@gmail.com>",
+  "license": "MIT"
+}
