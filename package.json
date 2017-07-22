@@ -11,6 +11,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/chai": "^4.0.1",
+    "@types/mocha": "^2.2.41",
     "chai": "^4.1.0",
     "karma": "^1.7.0",
     "karma-chai": "^0.1.0",
