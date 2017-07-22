@@ -3,11 +3,17 @@
   "version": "1.0.0",
   "description": "A Todo web with TypeScript",
   "scripts": {
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "gongzza <gz.us.to@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^2.4.2"
+    "ts-loader": "^2.3.1",
+    "typescript": "^2.4.2",
+    "vue": "^2.4.2",
+    "vue-loader": "^12.2.2",
+    "vue-template-compiler": "^2.4.2",
+    "webpack": "^3.3.0"
   }
 }
