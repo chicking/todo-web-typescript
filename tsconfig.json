@@ -8,7 +8,10 @@
     "noImplicitReturns": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "strictNullChecks": false
+    "strictNullChecks": false,
+    "lib": [
+      "dom", "es6"
+    ]
   },
   "include": [
     "src/**/*"
