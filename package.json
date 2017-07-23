@@ -22,6 +22,7 @@
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-sinon": "^1.0.5",
     "karma-webpack": "^2.0.4",
+    "loglevel": "^1.4.1",
     "mocha": "^3.4.2",
     "node-sass": "^4.5.3",
     "phantomjs-prebuilt": "^2.1.14",
@@ -37,6 +38,7 @@
     "vue-property-decorator": "^5.1.1",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.4.2",
-    "webpack": "^3.3.0"
+    "webpack": "^3.3.0",
+    "webpack-dev-server": "^2.6.0"
   }
 }
