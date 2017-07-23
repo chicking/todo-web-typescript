@@ -3,7 +3,7 @@ import { expect } from 'chai'
 import { div } from '../utils'
 
 describe('TodoList.vue', () => {
-  it('addTodo', () => {
+  it('addTodo and removeTodo', () => {
     const vm = new TodoList({
       el: div
     })
@@ -22,5 +22,11 @@ describe('TodoList.vue', () => {
 
     expect(todo.content).to.equals(content)
     expect(todo.done).to.be.false
+
+    const removedTodos = vm.removeTodo(todo._id)
+    expect(removedTodos).to.be.lengthOf(1)
+    expect(removedTodos[0]).to.deep.equal(todo)
+
+    expect(vm.todos).to.have.lengthOf(0)
   })
 })

@@ -12,6 +12,7 @@
   "devDependencies": {
     "@types/chai": "^4.0.1",
     "@types/mocha": "^2.2.41",
+    "babel-polyfill": "^6.23.0",
     "bulma": "^0.4.3",
     "chai": "^4.1.0",
     "css-loader": "^0.28.4",

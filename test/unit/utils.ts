@@ -1,6 +1,3 @@
-import Vue from 'vue'
 
-// disable print Vue production tip
-Vue.config.productionTip = false
-
+// for vue mount
 export const div: Element = document.createElement('div')

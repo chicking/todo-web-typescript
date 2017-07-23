@@ -74,13 +74,13 @@ export default class TodoListComponent extends Vue {
     this.clear()
   }
 
-  clear() {
+  clear(): void {
     this.content = ''
   }
 
-  removeTodo(id: string) {
+  removeTodo(id: string): Array<Todo> {
     const idx = this.todos.findIndex((todo: Todo) => todo._id === id)
-    this.todos.splice(idx, 1)
+    return this.todos.splice(idx, 1)
   }
 }
 
