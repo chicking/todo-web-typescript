@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A Todo web with TypeScript",
   "scripts": {
-    "build": "webpack",
+    "build": "NODE_ENV=production webpack",
     "dev": "webpack-dev-server --hot --inline",
     "test": "karma start test/unit/karma.conf.js"
   },
@@ -15,6 +15,7 @@
     "babel-polyfill": "^6.23.0",
     "bulma": "^0.4.3",
     "css-loader": "^0.28.4",
+    "html-webpack-plugin": "^2.29.0",
     "loglevel": "^1.4.1",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
