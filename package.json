@@ -10,8 +10,6 @@
   "author": "gongzza <gz.us.to@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@types/chai": "^4.0.1",
-    "@types/mocha": "^2.2.41",
     "babel-polyfill": "^6.23.0",
     "bulma": "^0.4.3",
     "css-loader": "^0.28.4",
@@ -32,6 +30,9 @@
     "webpack": "^3.3.0"
   },
   "devDependencies": {
+    "@types/chai": "^4.0.1",
+    "@types/mocha": "^2.2.41",
+    "@types/webpack-env": "^1.13.0",
     "chai": "^4.1.0",
     "karma": "^1.7.0",
     "karma-chai": "^0.1.0",
