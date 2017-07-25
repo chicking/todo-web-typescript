@@ -5,7 +5,9 @@
   "scripts": {
     "build": "NODE_ENV=production webpack",
     "dev": "webpack-dev-server --hot --inline",
-    "test": "karma start test/unit/karma.conf.js"
+    "test:base": "karma start test/unit/karma.conf.js",
+    "test": "npm run test:base -- --single-run",
+    "test:watch": "npm run test:base -- --auto-watch"
   },
   "author": "gongzza <gz.us.to@gmail.com>",
   "license": "MIT",
