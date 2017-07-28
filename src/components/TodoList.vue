@@ -51,8 +51,12 @@ import { Todo } from '@/models'
 @Component
 export default class TodoListComponent extends Vue {
 
+  // data
+
   content: string = ''
   todos: Array<Todo> = []
+
+  // methods
 
   addTodo() {
     if (this.content === '') {
