@@ -67,7 +67,15 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    noInfo: true
+    noInfo: true,
+    proxy: {
+      '/todo/api': {
+        target: 'http://localhost:3000',
+        pathRewrite: {
+          '^/todo': ''
+        }
+      }
+    }
   },
   performance: {
     hints: false

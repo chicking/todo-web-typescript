@@ -1,6 +1,8 @@
 import 'babel-polyfill'
 import Vue from 'vue'
 
+import '@/bootstrap'
+
 // disable print Vue production tip
 Vue.config.productionTip = false
 
