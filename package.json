@@ -12,7 +12,6 @@
   "author": "gongzza <gz.us.to@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@types/axios": "^0.14.0",
     "axios": "^0.16.2",
     "babel-polyfill": "^6.23.0",
     "bulma": "^0.4.3",
