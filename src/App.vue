@@ -1,23 +1,33 @@
 <template lang="html">
   <section class="section">
 
-    <login :active.sync="isLoginActive" v-if="isLoginActive"></login>
-
-    <div class="content" v-else>
-      <h1 class="title">
-        Hello {{name}}!
-      </h1>
-      <a class="button" @click="isLoginActive = true">Login</a>
+    <div class="content" v-if="isAuthenticated">
+      <nav class="nav">
+        <div class="nav-right">
+          <div class="nav-item">
+            {{username}}
+          </div>
+          <a class="nav-item" @click="$store.dispatch('logout')">
+            <span class="icon">
+              <i class="fa fa-sign-out"></i>
+            </span>
+          </a>
+        </div>
+      </nav>
 
       <todo-list></todo-list>
 
     </div>
+
+    <login v-else></login>
+
   </section>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
+import { Getter } from 'vuex-class'
 import TodoList from '@/components/TodoList.vue'
 import Login from '@/components/Login.vue'
 
@@ -28,6 +38,8 @@ import Login from '@/components/Login.vue'
 })
 export default class App extends Vue {
   public name: string = 'Todo'
-  public isLoginActive: boolean = false
+
+  @Getter isAuthenticated: boolean
+  @Getter username: string
 }
 </script>

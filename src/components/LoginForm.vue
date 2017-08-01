@@ -73,9 +73,10 @@ export default class LoginFormComponent extends Vue {
       .then(({data}) => {
         console.log(data)
         this.loading = false
-        this.$emit('loggedIn')
+        this.$store.dispatch('login', data.user)
       })
-      .catch(() => {
+      .catch(err => {
+        console.log(err)
         this.loading = false
       })
   }

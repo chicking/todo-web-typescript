@@ -5,5 +5,9 @@ import '@/bootstrap'
 
 import 'bulma'
 
-const app = new App()
+import store from './store'
+
+const app = new App({
+  store
+})
 app.$mount('#app')

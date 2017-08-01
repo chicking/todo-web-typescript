@@ -2,8 +2,8 @@
   <transition name="login" mode="out-in" v-if="isActive" appare>
     <div class="modal is-active">
       <div class="modal-background"></div>
-      <login-form v-show="isLogin" @toggle="showRegist()" @loggedIn="loggedIn()"></login-form>
-      <regist-form v-show="isRegist" @toggle="showRegist()"></regist-form>
+      <login-form v-show="isLogin" @toggle="showRegist()"></login-form>
+      <regist-form v-show="isRegist" @toggle="showLogin()"></regist-form>
     </div>
   </transition>
 </template>
@@ -27,11 +27,9 @@ const STATUS_REGIST = 'STATUS_REGIST'
 })
 export default class LoginComponent extends Vue {
 
-  @Prop() active: boolean
-
   // data
 
-  isActive: boolean = this.active
+  isActive: boolean = true
   status: string = STATUS_LOGIN
 
   // computed
@@ -52,10 +50,6 @@ export default class LoginComponent extends Vue {
 
   showRegist(): void {
     this.status = STATUS_REGIST
-  }
-
-  loggedIn(): void {
-    this.$emit('update:active', false)
   }
 }
 </script>
