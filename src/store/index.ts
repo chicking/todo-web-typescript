@@ -9,8 +9,8 @@ const store = new Store({
     isAuthenticated({authentication}) {
       return authentication
     },
-    username({authentication, user}) {
-      return authentication
+    username({user}) {
+      return user !== null
         ? user.name
         : ''
     }
