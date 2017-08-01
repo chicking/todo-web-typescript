@@ -12,7 +12,8 @@
     "strictNullChecks": false,
     "lib": [
       "dom", "es6"
-    ]
+    ],
+    "allowJs": true
   },
   "include": [
     "src/**/*"
