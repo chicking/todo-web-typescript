@@ -1,42 +1,36 @@
 import App from '@/App.vue'
+import store from '@/store'
 import { expect } from 'chai'
 import { div } from './utils'
 
 describe('App.vue', () => {
-  it('should equal name', done => {
+  it('$store#login', () => {
     const vm = new App({
-      el: div
+      el: div,
+      store
     })
 
-    expect(vm.name).to.equals('Todo')
+    expect(vm.isAuthenticated).is.false
+    expect(vm.username).to.empty
 
-    const $title = vm.$el.querySelector('h1.title')
-    expect($title).is.not.null
-    expect($title.textContent.trim()).to.equals('Hello Todo!')
+    const user = {
+      name: 'test'
+    }
+    vm.$store.dispatch('login', user)
 
-    vm.name = 'Vue'
-    vm.$nextTick(() => {
-      expect($title.textContent.trim()).to.equals('Hello Vue!')
-      done()
-    })
+    expect(vm.isAuthenticated).is.true
+    expect(vm.username).to.equals(user.name)
   })
 
-  it('open login', done => {
-    const vm = new App({el: div})
-
-    expect(vm.isLoginActive).is.false
-
-    expect(vm.$el.querySelector('h1.title')).is.not.null
-
-    const $btnLogin = vm.$el.querySelector('a.button')
-    $btnLogin.click()
-
-    expect(vm.isLoginActive).is.true
-
-    vm.$nextTick(() => {
-      expect(vm.$el.querySelector('h1.title')).is.null
-      expect(vm.$el.querySelector('.login')).is.not.null
-      done()
+  it('$store#logout', () => {
+    const vm = new App({
+      el: div,
+      store
     })
+
+    vm.$store.dispatch('logout')
+
+    expect(vm.isAuthenticated).is.false
+    expect(vm.username).to.empty
   })
 })

@@ -2,8 +2,8 @@
   <transition name="login" mode="out-in" v-if="isActive" appare>
     <div class="modal is-active">
       <div class="modal-background"></div>
-      <login-form v-show="isLogin" @toggle="showRegist()"></login-form>
-      <regist-form v-show="isRegist" @toggle="showLogin()"></regist-form>
+      <login-form v-if="isLogin" @toggle="showRegist()"></login-form>
+      <regist-form v-if="isRegist" @toggle="showLogin()"></regist-form>
     </div>
   </transition>
 </template>
