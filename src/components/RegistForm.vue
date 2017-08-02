@@ -68,6 +68,10 @@ export default class RegistFormComponent extends Vue {
   // methods
 
   regist(): void {
+    if (this.username === '' || this.password === '') {
+      return
+    }
+
     if (this.password !== this.passwordConfirmed) {
       return
     }
@@ -80,7 +84,6 @@ export default class RegistFormComponent extends Vue {
     this.loading = true
     axios.post('/auth/regist', userInfo)
       .then(({data}) => {
-        console.log(data)
         this.loading = false
         this.$emit('toggle')
       })

@@ -4,15 +4,16 @@ import { div } from '../utils'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 
-const mock = new MockAdapter(axios)
-mock
-  .onPost('/todo/api/auth/regist')
-    .reply(201, {
-      success: true
-    })
-
 describe('RegistForm.vue', () => {
-  it('regist', () => {
+  before(() => {
+    const mock = new MockAdapter(axios)
+    mock.onPost('/auth/regist')
+      .reply(201, {
+        success: true
+      })
+  })
+
+  it('regist', done => {
     const vm = new RegistForm({
       el: div
     })
@@ -25,7 +26,11 @@ describe('RegistForm.vue', () => {
 
     const $btnLogin = vm.$el.querySelector('button.button')
     $btnLogin.click()
-  
+
     expect(vm.loading).is.true
+    process.nextTick(() => {
+      expect(vm.loading).is.false
+      done()
+    })
   })
 })

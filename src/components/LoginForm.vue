@@ -71,12 +71,10 @@ export default class LoginFormComponent extends Vue {
     this.loading = true
     axios.post('/auth/login', userInfo)
       .then(({data}) => {
-        console.log(data)
         this.loading = false
         this.$store.dispatch('login', data.user)
       })
       .catch(err => {
-        console.log(err)
         this.loading = false
       })
   }
