@@ -7,7 +7,7 @@
           <div class="nav-item">
             {{username}}
           </div>
-          <a class="nav-item" @click="$store.dispatch('logout')">
+          <a class="nav-item" @click="logout()">
             <span class="icon">
               <i class="fa fa-sign-out"></i>
             </span>
@@ -31,15 +31,28 @@ import { Getter } from 'vuex-class'
 import TodoList from '@/components/TodoList.vue'
 import Login from '@/components/Login.vue'
 
+import axios from 'axios'
+import token from './bootstrap/token'
+
 @Component({
   components: {
     TodoList, Login
   }
 })
 export default class App extends Vue {
-  public name: string = 'Todo'
+
+  // getters
 
   @Getter isAuthenticated: boolean
   @Getter username: string
+
+  // methods
+
+  logout(): void {
+    token.remove()
+    axios.defaults.headers['Authorization'] = null
+
+    this.$store.dispatch('logout')
+  }
 }
 </script>
