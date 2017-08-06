@@ -33,17 +33,10 @@ describe('LoginForm.vue', () => {
     $btnLogin.click()
 
     expect(vm.loading).is.true
-<<<<<<< HEAD
 
-    process.nextTick(() => {
-      expect(vm.loading).is.false
-      expect(vm.$store.getters.isAuthenticated).is.true
-      expect(vm.$store.getters.username).to.equals('test')
-=======
     process.nextTick(() => {
       expect(vm.$auth.isAuthenticated).is.true
       expect(vm.$auth.user.name).to.equals(user.name)
->>>>>>> Refactor jwt auth
       done()
     })
   })

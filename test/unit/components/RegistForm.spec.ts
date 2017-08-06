@@ -28,6 +28,7 @@ describe('RegistForm.vue', () => {
     $btnLogin.click()
 
     expect(vm.loading).is.true
+    
     process.nextTick(() => {
       expect(vm.loading).is.false
       done()

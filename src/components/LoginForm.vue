@@ -69,7 +69,7 @@ export default class LoginFormComponent extends Vue {
 
     this.loading = true
     this.$auth.login(userInfo)
-      .catch(err => {
+      .catch(() => {
         this.loading = false
       })
   }

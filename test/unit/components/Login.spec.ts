@@ -13,16 +13,16 @@ describe('Login.vue', () => {
     const loading = vm.$el.querySelector('.is-loading').textContent.trim()
     expect(loading).to.equals('Loading...')
 
-    process.nextTick(() => {
+    setTimeout(() => {
 
       // status login
 
-      const $toggle = vm.$el.querySelector('.modal-card-header-icon')
+      expect(vm.isLogin, 'isLogin').is.true
 
-      expect(vm.isLogin).is.true
       let title = vm.$el.querySelector('.modal-card-title').textContent.trim()
       expect(title).to.equals('Login')
 
+      const $toggle = vm.$el.querySelector('.modal-card-header-icon')
       $toggle.click()
 
       // status regist
@@ -33,6 +33,6 @@ describe('Login.vue', () => {
         expect(title).to.equals('Regist')
         done()
       })
-    })
+    }, 10)
   })
 })
