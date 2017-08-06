@@ -45,7 +45,6 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
-import axios from 'axios'
 
 @Component
 export default class RegistFormComponent extends Vue {
@@ -82,8 +81,8 @@ export default class RegistFormComponent extends Vue {
     }
 
     this.loading = true
-    axios.post('/auth/regist', userInfo)
-      .then(({data}) => {
+    this.$auth.regist(userInfo)
+      .then(() => {
         this.loading = false
         this.$emit('toggle')
       })

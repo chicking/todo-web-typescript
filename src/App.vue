@@ -1,13 +1,13 @@
 <template lang="html">
   <section class="section">
 
-    <div class="content" v-if="isAuthenticated">
+    <div class="content" v-if="$auth.isAuthenticated">
       <nav class="nav">
         <div class="nav-right">
           <div class="nav-item">
-            {{username}}
+            {{$auth.user.name}}
           </div>
-          <a class="nav-item" @click="logout()">
+          <a class="nav-item" @click="$auth.logout()">
             <span class="icon">
               <i class="fa fa-sign-out"></i>
             </span>
@@ -31,28 +31,11 @@ import { Getter } from 'vuex-class'
 import TodoList from '@/components/TodoList.vue'
 import Login from '@/components/Login.vue'
 
-import axios from 'axios'
-import token from './bootstrap/token'
-
 @Component({
   components: {
     TodoList, Login
   }
 })
 export default class App extends Vue {
-
-  // getters
-
-  @Getter isAuthenticated: boolean
-  @Getter username: string
-
-  // methods
-
-  logout(): void {
-    token.remove()
-    axios.defaults.headers['Authorization'] = null
-
-    this.$store.dispatch('logout')
-  }
 }
 </script>

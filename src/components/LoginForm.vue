@@ -37,8 +37,6 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
-import axios from 'axios'
-import token from '@/bootstrap/token'
 
 @Component
 export default class LoginFormComponent extends Vue {
@@ -70,15 +68,7 @@ export default class LoginFormComponent extends Vue {
     }
 
     this.loading = true
-    axios.post('/auth/login', userInfo)
-      .then(({data}) => {
-        this.loading = false
-
-        token.set(data.token)
-        axios.defaults.headers['Authorization'] = `Bearer ${data.token}`
-
-        this.$store.dispatch('login', data.user)
-      })
+    this.$auth.login(userInfo)
       .catch(err => {
         this.loading = false
       })

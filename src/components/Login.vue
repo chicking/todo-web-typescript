@@ -2,7 +2,7 @@
   <transition name="login" mode="out-in" v-if="isActive" appare>
     <div class="modal is-active">
       <div class="modal-background"></div>
-      <div v-if="isLoading">
+      <div class="is-loading" v-if="isLoading">
         Loading...
       </div>
       <login-form v-if="isLogin" @toggle="showRegist()"></login-form>
@@ -13,10 +13,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Component, Prop } from 'vue-property-decorator'
-import { User } from '@/models'
-import axios from 'axios'
-import token from '@/bootstrap/token'
+import { Component } from 'vue-property-decorator'
 
 import LoginForm from './LoginForm.vue'
 import RegistForm from './RegistForm.vue'
@@ -40,19 +37,10 @@ export default class LoginComponent extends Vue {
   // lifecycle
 
   created(): void {
-    const _token = token.get()
-    if (_token) {
-      axios.defaults.headers['Authorization'] = `Bearer ${_token}`
-      axios.get('/me')
-        .then(({data}) => {
-          this.$store.dispatch('login', data.user)
-        })
-        .catch(() => {
-          this.showLogin()
-        })
-    } else {
-      this.showLogin()
-    }
+    this.$auth.fetch()
+      .catch(() => {
+        this.showLogin()
+      })
   }
 
   // computed
