@@ -1,32 +1,62 @@
 import TodoList from '@/components/TodoList.vue'
 import { expect } from 'chai'
 import { div } from '../utils'
+import axios from 'axios'
+import MockAdapter from 'axios-mock-adapter'
+import faker from 'faker'
 
 describe('TodoList.vue', () => {
-  it('addTodo and removeTodo', () => {
+
+  it('fetchData', done => {
+    const mock = new MockAdapter(axios)
+    mock
+    .onGet('/todo')
+      .reply(200, {
+        todos: [
+          { _id: '1', content: 'todo1', done: false }
+        ]
+      })
+
     const vm = new TodoList({
       el: div
     })
 
-    const content = 'todo'
+    expect(vm.todos).to.have.lengthOf(0)
+    process.nextTick(() => {
+      expect(vm.todos).to.have.lengthOf(1)
+      done()
+    })
+  })
 
-    // add
-    vm.content = content
+  it('addTodo and remove', done => {
+    const todo = {
+      _id: faker.random.uuid(),
+      content: faker.lorem.sentence(),
+      done: false
+    }
+
+    const mock = new MockAdapter(axios)
+    mock
+      .onGet('/todo').reply(200, {todos: []})
+      .onPost('/todo').reply(201, todo)
+      .onDelete('/todo/' + todo._id).reply(200)
+
+    const vm = new TodoList({
+      el: div
+    })
+
+    vm.content = todo.content
     vm.addTodo()
 
-    // empty content
-    expect(vm.content).to.be.empty
+    process.nextTick(() => {
+      expect(vm.todos).to.have.lengthOf(1)
 
-    expect(vm.todos).to.have.lengthOf(1)
-    const todo = vm.todos[0]
+      vm.remove(todo)
 
-    expect(todo.content).to.equals(content)
-    expect(todo.done).to.be.false
-
-    const removedTodos = vm.removeTodo(todo._id)
-    expect(removedTodos).to.be.lengthOf(1)
-    expect(removedTodos[0]).to.deep.equal(todo)
-
-    expect(vm.todos).to.have.lengthOf(0)
+      setTimeout(() => {
+        expect(vm.todos).to.have.lengthOf(0)
+        done()
+      }, 10)
+    })
   })
 })

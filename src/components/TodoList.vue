@@ -24,14 +24,14 @@
         <tr v-for="todo of todos" :key="todo._id">
           <td>
             <label class="checkbox">
-              <input type="checkbox" v-model="todo.done">
+              <input type="checkbox" v-model="todo.done" @change="update(todo)">
             </label>
           </td>
           <td>
             {{ todo.content }}
           </td>
           <td>
-            <button class="button is-danger is-outlined" @click="removeTodo(todo._id)">
+            <button class="button is-danger is-outlined" @click="remove(todo)">
               <span class="icon is-small">
                 <i class="fa fa-remove"></i>
               </span>
@@ -47,6 +47,7 @@
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
 import { Todo } from '@/models'
+import axios from 'axios'
 
 @Component
 export default class TodoListComponent extends Vue {
@@ -56,9 +57,15 @@ export default class TodoListComponent extends Vue {
   content: string = ''
   todos: Array<Todo> = []
 
+  // lifecycle
+
+  created(): void {
+    this.fetchData()
+  }
+
   // methods
 
-  addTodo() {
+  addTodo(): void {
     if (this.content === '') {
       return
     }
@@ -67,24 +74,36 @@ export default class TodoListComponent extends Vue {
       content: this.content
     }
 
-    const _id: string = '' + (this.todos.length + 1)
+    axios.post('/todo', todo)
+      .then(res => {
+        this.todos.push(res.data)
+        this.clear()
+      })
+  }
 
-    this.todos.push({
-      _id,
-      ...todo,
-      done: false
-    })
-
-    this.clear()
+  fetchData(): void {
+    axios.get('/todo')
+      .then(({data}) => {
+        this.todos = data.todos
+      })
   }
 
   clear(): void {
     this.content = ''
   }
 
-  removeTodo(id: string): Array<Todo> {
-    const idx = this.todos.findIndex((todo: Todo) => todo._id === id)
-    return this.todos.splice(idx, 1)
+  update(todo: Todo): void {
+    const id = todo._id
+    axios.put(`/todo/${id}`, todo)
+  }
+
+  remove(todo: Todo): void {
+    const id = todo._id
+    axios.delete(`/todo/${id}`)
+      .then(() => {
+        let idx = this.todos.findIndex(todo => todo._id === id)
+        return this.todos.splice(idx, 1)
+      })
   }
 }
 
