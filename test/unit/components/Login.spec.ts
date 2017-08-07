@@ -12,27 +12,27 @@ describe('Login.vue', () => {
 
     const loading = vm.$el.querySelector('.is-loading').textContent.trim()
     expect(loading).to.equals('Loading...')
+    vm.$nextTick(() => {
+      process.nextTick(() => {
+        // status login
 
-    setTimeout(() => {
+        expect(vm.isLogin, 'isLogin').is.true
 
-      // status login
+        let title = vm.$el.querySelector('.modal-card-title').textContent.trim()
+        expect(title).to.equals('Login')
 
-      expect(vm.isLogin, 'isLogin').is.true
+        const $toggle = vm.$el.querySelector('.modal-card-header-icon')
+        $toggle.click()
 
-      let title = vm.$el.querySelector('.modal-card-title').textContent.trim()
-      expect(title).to.equals('Login')
+        // status regist
 
-      const $toggle = vm.$el.querySelector('.modal-card-header-icon')
-      $toggle.click()
-
-      // status regist
-
-      expect(vm.isRegist).is.true
-      vm.$nextTick(() => {
-        title = vm.$el.querySelector('.modal-card-title').textContent.trim()
-        expect(title).to.equals('Regist')
-        done()
+        expect(vm.isRegist, 'isRegist').is.true
+        vm.$nextTick(() => {
+          title = vm.$el.querySelector('.modal-card-title').textContent.trim()
+          expect(title).to.equals('Regist')
+          done()
+        })
       })
-    }, 10)
+    })
   })
 })

@@ -53,10 +53,12 @@ describe('TodoList.vue', () => {
 
       vm.remove(todo)
 
-      setTimeout(() => {
-        expect(vm.todos).to.have.lengthOf(0)
-        done()
-      }, 10)
+      vm.$nextTick(() => {
+        process.nextTick(() => {
+          expect(vm.todos).to.have.lengthOf(0)
+          done()
+        })
+      })
     })
   })
 })
