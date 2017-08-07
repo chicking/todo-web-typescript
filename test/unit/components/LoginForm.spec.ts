@@ -4,12 +4,13 @@ import { expect } from 'chai'
 import { div } from '../utils'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
+import faker from 'faker'
 
 describe('LoginForm.vue', () => {
 
   const user = {
     _id: 1,
-    name: 'test'
+    name: faker.name.findName()
   }
 
   beforeEach(() => {

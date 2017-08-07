@@ -28,10 +28,27 @@ describe('RegistForm.vue', () => {
     $btnLogin.click()
 
     expect(vm.loading).is.true
-    
+
     process.nextTick(() => {
       expect(vm.loading).is.false
       done()
     })
+  })
+
+  it('regist#not equal to password', () => {
+    const vm = new RegistForm({
+      el: div
+    })
+
+    expect(vm.loading).is.false
+
+    vm.username = 'username'
+    vm.password = 'password'
+    vm.passwordConfirmed = 'not equal'
+
+    const $btnLogin = vm.$el.querySelector('button.button')
+    $btnLogin.click()
+
+    expect(vm.loading).is.false
   })
 })
