@@ -1,6 +1,6 @@
 import TodoList from '@/components/TodoList.vue'
 import { expect } from 'chai'
-import { div, nextTick } from '../utils'
+import { newVM, nextTick } from '../utils'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import faker from 'faker'
@@ -17,13 +17,11 @@ describe('TodoList.vue', () => {
         ]
       })
 
-    const vm = new TodoList({
-      el: div
-    })
+    const vm: TodoList = newVM(TodoList)
 
     expect(vm.todos).to.have.lengthOf(0)
 
-    await nextTick()
+    await nextTick() // fetchData()
 
     expect(vm.todos).to.have.lengthOf(1)
   })
@@ -41,21 +39,19 @@ describe('TodoList.vue', () => {
       .onPost('/todo').reply(201, todo)
       .onDelete('/todo/' + todo._id).reply(200)
 
-    const vm = new TodoList({
-      el: div
-    })
+    const vm: TodoList = newVM(TodoList)
 
     vm.content = todo.content
     vm.addTodo()
 
-    await nextTick()
+    await nextTick() // addTodo()
 
     expect(vm.todos, 'todos 1').to.have.lengthOf(1)
 
     vm.remove(todo)
 
-    await vm.$nextTick()
-    await nextTick()
+    await nextTick() // remove()
+    await vm.$nextTick() // update this.todos
 
     expect(vm.todos, 'todos 0').to.have.lengthOf(0)
   })

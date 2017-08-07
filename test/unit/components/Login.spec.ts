@@ -1,20 +1,19 @@
 import Login from '@/components/Login.vue'
 import { expect } from 'chai'
-import { div, nextTick } from '../utils'
+import { newVM, nextTick } from '../utils'
 
 describe('Login.vue', () => {
   it('toggle', async () => {
-    const vm = new Login({
-      el: div
-    })
+    const vm: Login = newVM(Login)
 
     // status loading
 
     const loading = vm.$el.querySelector('.is-loading').textContent.trim()
     expect(loading).to.equals('Loading...')
 
-    await vm.$nextTick()
-    await nextTick()
+    await vm.$nextTick() // update created()
+    await nextTick() // $auth.fetch()
+    await nextTick() // .catch()
 
     // status login
 
@@ -30,7 +29,7 @@ describe('Login.vue', () => {
 
     expect(vm.isRegist, 'isRegist').is.true
 
-    await vm.$nextTick()
+    await vm.$nextTick() // update toggle()
 
     title = vm.$el.querySelector('.modal-card-title').textContent.trim()
     expect(title).to.equals('Regist')

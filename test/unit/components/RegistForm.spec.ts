@@ -1,6 +1,6 @@
 import RegistForm from '@/components/RegistForm.vue'
 import { expect } from 'chai'
-import { div } from '../utils'
+import { newVM, nextTick } from '../utils'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 
@@ -13,10 +13,8 @@ describe('RegistForm.vue', () => {
       })
   })
 
-  it('regist', done => {
-    const vm = new RegistForm({
-      el: div
-    })
+  it('regist', async () => {
+    const vm: RegistForm = newVM(RegistForm)
 
     expect(vm.loading).is.false
 
@@ -29,16 +27,13 @@ describe('RegistForm.vue', () => {
 
     expect(vm.loading).is.true
 
-    process.nextTick(() => {
-      expect(vm.loading).is.false
-      done()
-    })
+    await nextTick() // $auth.regist()
+
+    expect(vm.loading).is.false
   })
 
   it('regist#not equal to password', () => {
-    const vm = new RegistForm({
-      el: div
-    })
+    const vm: RegistForm = newVM(RegistForm)
 
     expect(vm.loading).is.false
 
@@ -48,6 +43,8 @@ describe('RegistForm.vue', () => {
 
     const $btnLogin = vm.$el.querySelector('button.button')
     $btnLogin.click()
+
+    // Nothing to do
 
     expect(vm.loading).is.false
   })
