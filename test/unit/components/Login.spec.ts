@@ -1,9 +1,9 @@
 import Login from '@/components/Login.vue'
 import { expect } from 'chai'
-import { div } from '../utils'
+import { div, nextTick } from '../utils'
 
 describe('Login.vue', () => {
-  it('toggle', done => {
+  it('toggle', async () => {
     const vm = new Login({
       el: div
     })
@@ -12,27 +12,27 @@ describe('Login.vue', () => {
 
     const loading = vm.$el.querySelector('.is-loading').textContent.trim()
     expect(loading).to.equals('Loading...')
-    vm.$nextTick(() => {
-      process.nextTick(() => {
-        // status login
 
-        expect(vm.isLogin, 'isLogin').is.true
+    await vm.$nextTick()
+    await nextTick()
 
-        let title = vm.$el.querySelector('.modal-card-title').textContent.trim()
-        expect(title).to.equals('Login')
+    // status login
 
-        const $toggle = vm.$el.querySelector('.modal-card-header-icon')
-        $toggle.click()
+    expect(vm.isLogin, 'isLogin').is.true
 
-        // status regist
+    let title = vm.$el.querySelector('.modal-card-title').textContent.trim()
+    expect(title).to.equals('Login')
 
-        expect(vm.isRegist, 'isRegist').is.true
-        vm.$nextTick(() => {
-          title = vm.$el.querySelector('.modal-card-title').textContent.trim()
-          expect(title).to.equals('Regist')
-          done()
-        })
-      })
-    })
+    const $toggle = vm.$el.querySelector('.modal-card-header-icon')
+    $toggle.click()
+
+    // status regist
+
+    expect(vm.isRegist, 'isRegist').is.true
+
+    await vm.$nextTick()
+
+    title = vm.$el.querySelector('.modal-card-title').textContent.trim()
+    expect(title).to.equals('Regist')
   })
 })

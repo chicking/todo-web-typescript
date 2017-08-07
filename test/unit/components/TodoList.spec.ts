@@ -1,13 +1,13 @@
 import TodoList from '@/components/TodoList.vue'
 import { expect } from 'chai'
-import { div } from '../utils'
+import { div, nextTick } from '../utils'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import faker from 'faker'
 
 describe('TodoList.vue', () => {
 
-  it('fetchData', done => {
+  it('fetchData', async () => {
     const mock = new MockAdapter(axios)
     mock
     .onGet('/todo')
@@ -22,13 +22,13 @@ describe('TodoList.vue', () => {
     })
 
     expect(vm.todos).to.have.lengthOf(0)
-    process.nextTick(() => {
-      expect(vm.todos).to.have.lengthOf(1)
-      done()
-    })
+
+    await nextTick()
+
+    expect(vm.todos).to.have.lengthOf(1)
   })
 
-  it('addTodo and remove', done => {
+  it('addTodo and remove', async () => {
     const todo = {
       _id: faker.random.uuid(),
       content: faker.lorem.sentence(),
@@ -48,17 +48,15 @@ describe('TodoList.vue', () => {
     vm.content = todo.content
     vm.addTodo()
 
-    process.nextTick(() => {
-      expect(vm.todos).to.have.lengthOf(1)
+    await nextTick()
 
-      vm.remove(todo)
+    expect(vm.todos, 'todos 1').to.have.lengthOf(1)
 
-      vm.$nextTick(() => {
-        process.nextTick(() => {
-          expect(vm.todos).to.have.lengthOf(0)
-          done()
-        })
-      })
-    })
+    vm.remove(todo)
+
+    await vm.$nextTick()
+    await nextTick()
+
+    expect(vm.todos, 'todos 0').to.have.lengthOf(0)
   })
 })
