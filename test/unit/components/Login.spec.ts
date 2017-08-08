@@ -22,7 +22,7 @@ describe('Login.vue', () => {
     let title = vm.$el.querySelector('.modal-card-title').textContent.trim()
     expect(title).to.equals('Login')
 
-    const $toggle = vm.$el.querySelector('.modal-card-header-icon')
+    const $toggle = vm.$el.querySelector('.modal-card-header-icon') as HTMLButtonElement
     $toggle.click()
 
     // status regist

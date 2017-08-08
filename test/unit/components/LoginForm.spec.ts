@@ -26,7 +26,7 @@ describe('LoginForm.vue', () => {
     vm.username = 'username'
     vm.password = 'password'
 
-    const $btnLogin = vm.$el.querySelector('button.button')
+    const $btnLogin = vm.$el.querySelector('button.button') as HTMLButtonElement
     $btnLogin.click()
 
     expect(vm.loading).is.true

@@ -22,7 +22,7 @@ describe('RegistForm.vue', () => {
     vm.password = 'password'
     vm.passwordConfirmed = 'password'
 
-    const $btnLogin = vm.$el.querySelector('button.button')
+    const $btnLogin = vm.$el.querySelector('button.button') as HTMLButtonElement
     $btnLogin.click()
 
     expect(vm.loading).is.true
@@ -41,7 +41,7 @@ describe('RegistForm.vue', () => {
     vm.password = 'password'
     vm.passwordConfirmed = 'not equal'
 
-    const $btnLogin = vm.$el.querySelector('button.button')
+    const $btnLogin = vm.$el.querySelector('button.button') as HTMLButtonElement
     $btnLogin.click()
 
     // Nothing to do
