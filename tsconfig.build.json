@@ -13,10 +13,9 @@
     "lib": [
       "dom", "es6"
     ],
-    "allowJs": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    }
-  }
+    "allowJs": true
+  },
+  "include": [
+    "src/**/*"
+  ]
 }

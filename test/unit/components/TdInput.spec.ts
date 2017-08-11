@@ -2,7 +2,7 @@ import { expect } from 'chai'
 import { newVM, nextTick } from '../utils'
 import faker from 'faker'
 
-import TdInput from '@/components/TdInput.vue'
+import TdInput from '@/components/TdInput'
 
 describe('TdInput.vue', () => {
 

@@ -46,7 +46,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
-import TdInput from './TdInput.vue'
+import TdInput from './TdInput'
 import { Todo } from '@/models'
 import axios from 'axios'
 

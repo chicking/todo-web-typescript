@@ -2,6 +2,8 @@ var path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
+var isProd = process.env.NODE_ENV === 'production'
+
 module.exports = {
   entry: {
     app: './src/index.ts'
@@ -46,6 +48,7 @@ module.exports = {
         loader: 'ts-loader',
         exclude: /node_modules/,
         options: {
+          configFileName: 'tsconfig.build.json',
           appendTsSuffixTo: [/\.vue$/],
         }
       },
@@ -59,7 +62,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.ts', '.js', '.vue', '.json'],
+    extensions: ['.vue', '.ts', '.js', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': path.resolve('src')
@@ -90,7 +93,7 @@ module.exports = {
   ]
 }
 
-if (process.env.NODE_ENV === 'production') {
+if (isProd) {
   module.exports.devtool = '#source-map'
   module.exports.output.filename = 'js/[name].[chunkhash:7].js'
   // http://vue-loader.vuejs.org/en/workflow/production.html
