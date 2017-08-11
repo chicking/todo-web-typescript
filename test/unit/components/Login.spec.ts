@@ -1,4 +1,4 @@
-import Login from '@/components/Login.vue'
+import Login from '@/components/Login'
 import { expect } from 'chai'
 import { newVM, nextTick } from '../utils'
 

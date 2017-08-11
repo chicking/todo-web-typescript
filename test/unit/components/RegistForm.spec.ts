@@ -1,4 +1,4 @@
-import RegistForm from '@/components/RegistForm.vue'
+import RegistForm from '@/components/RegistForm'
 import { expect } from 'chai'
 import { newVM, nextTick } from '../utils'
 import axios from 'axios'

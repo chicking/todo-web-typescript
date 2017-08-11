@@ -1,4 +1,4 @@
-import TodoList from '@/components/TodoList.vue'
+import TodoList from '@/components/TodoList'
 import { expect } from 'chai'
 import { newVM, nextTick } from '../utils'
 import axios from 'axios'

@@ -11,6 +11,7 @@
     "return-undefined": false,
     "no-floating-promises": false,
     "no-unnecessary-qualifier": false,
-    "strict-type-predicates": false
+    "strict-type-predicates": false,
+    "no-unused-expression": false
   }
 }

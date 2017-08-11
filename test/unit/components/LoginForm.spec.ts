@@ -1,4 +1,4 @@
-import LoginForm from '@/components/LoginForm.vue'
+import LoginForm from '@/components/LoginForm'
 import { expect } from 'chai'
 import { newVM, nextTick } from '../utils'
 import axios from 'axios'

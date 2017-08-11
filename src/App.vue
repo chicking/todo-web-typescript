@@ -28,8 +28,8 @@
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
 import { Getter } from 'vuex-class'
-import TodoList from '@/components/TodoList.vue'
-import Login from '@/components/Login.vue'
+import TodoList from '@/components/TodoList'
+import Login from '@/components/Login'
 
 @Component({
   components: {
