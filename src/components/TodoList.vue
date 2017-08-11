@@ -27,9 +27,9 @@
               <input type="checkbox" v-model="todo.done" @change="update(todo)">
             </label>
           </td>
-          <td>
+          <td-input v-model="todo.content" @change="update(todo)">
             {{ todo.content }}
-          </td>
+          </td-input>
           <td>
             <button class="button is-danger is-outlined" @click="remove(todo)">
               <span class="icon is-small">
@@ -46,10 +46,15 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
+import TdInput from './TdInput.vue'
 import { Todo } from '@/models'
 import axios from 'axios'
 
-@Component
+@Component({
+  components: {
+    TdInput
+  }
+})
 export default class TodoListComponent extends Vue {
 
   // data
