@@ -11,7 +11,7 @@ export function nextTick(): Promise<any> {
 }
 
 // create vue component
-export function newVM<T extends Vue>(_Vue: new (args: Component) => T, propsData?: PropOptions): T {
+export function newVM<T extends Vue>(_Vue: new (args: Component) => T, propsData?: Object): T {
   return new _Vue({
     el: div,
     propsData
