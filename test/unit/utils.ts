@@ -1,7 +1,7 @@
-import Vue, { Component, PropOptions } from 'vue'
+import Vue, { Component, PropOptions, ComponentOptions } from 'vue'
 
 // for vue mount
-export const div: Element = document.createElement('div')
+export const el: Element = document.createElement('div')
 
 // async-promise
 export function nextTick(): Promise<any> {
@@ -11,9 +11,27 @@ export function nextTick(): Promise<any> {
 }
 
 // create vue component
-export function newVM<T extends Vue>(_Vue: new (args: Component) => T, propsData?: Object): T {
-  return new _Vue({
-    el: div,
-    propsData
-  })
+export function newVM(Comp: string | { new (args: Component): Vue }, propsData?: Object, components?: {[key: string]: Component}): Vue {
+  return typeof Comp === 'string'
+    ? newVMwithTemplate(Comp, propsData, components)
+    : newVMwithComponent(Comp, propsData)
+}
+
+function newVMwithComponent(Comp: new (args: Component) => Vue, propsData?: Object): Vue {
+  const options = {
+    el, propsData
+  } as ComponentOptions<Vue>
+
+  return new Comp(options)
+}
+
+function newVMwithTemplate(template: string, propsData?: Object, components?: {[key: string]: Component}): Vue {
+  let options = {
+    el,
+    data: () => propsData,
+    template,
+    components
+  } as ComponentOptions<Vue>
+
+  return new Vue(options)
 }

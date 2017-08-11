@@ -17,7 +17,7 @@ describe('TodoList.vue', () => {
         ]
       })
 
-    const vm: TodoList = newVM(TodoList)
+    const vm = newVM(TodoList) as TodoList
 
     expect(vm.todos).to.have.lengthOf(0)
 
@@ -39,7 +39,7 @@ describe('TodoList.vue', () => {
       .onPost('/todo').reply(201, todo)
       .onDelete('/todo/' + todo._id).reply(200)
 
-    const vm: TodoList = newVM(TodoList)
+    const vm = newVM(TodoList) as TodoList
 
     vm.content = todo.content
     vm.addTodo()

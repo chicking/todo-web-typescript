@@ -14,7 +14,7 @@ describe('RegistForm.vue', () => {
   })
 
   it('regist', async () => {
-    const vm: RegistForm = newVM(RegistForm)
+    const vm = newVM(RegistForm) as RegistForm
 
     expect(vm.loading).is.false
 
@@ -33,7 +33,7 @@ describe('RegistForm.vue', () => {
   })
 
   it('regist#not equal to password', () => {
-    const vm: RegistForm = newVM(RegistForm)
+    const vm = newVM(RegistForm) as RegistForm
 
     expect(vm.loading).is.false
 

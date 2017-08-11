@@ -4,7 +4,7 @@ import { newVM, nextTick } from '../utils'
 
 describe('Login.vue', () => {
   it('toggle', async () => {
-    const vm: Login = newVM(Login)
+    const vm = newVM(Login) as Login
 
     // status loading
 

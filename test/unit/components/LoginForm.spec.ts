@@ -19,7 +19,7 @@ describe('LoginForm.vue', () => {
   })
 
   it('login', async () => {
-    const vm: LoginForm = newVM(LoginForm)
+    const vm = newVM(LoginForm) as LoginForm
 
     expect(vm.loading).is.false
 
