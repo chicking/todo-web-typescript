@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Component } from 'vue-property-decorator'
+import Component from 'vue-class-component'
 
 import LoginForm from '@/components/LoginForm'
 import RegistForm from '@/components/RegistForm'

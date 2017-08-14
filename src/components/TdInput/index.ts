@@ -1,12 +1,12 @@
 import Vue from 'vue'
-import { Component, Prop } from 'vue-property-decorator'
+import { Component, Prop } from '@gongzza/vue-property-decorator'
 
 @Component
 export default class TdInput extends Vue {
 
   // props
 
-  @Prop() value: string
+  @Prop value: string
 
   // data
 

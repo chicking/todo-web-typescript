@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Component } from 'vue-property-decorator'
+import Component from 'vue-class-component'
 import TdInput from '@/components/TdInput'
 import { Todo } from '@/models'
 import axios from 'axios'
