@@ -13,10 +13,15 @@
     "lib": [
       "dom", "es6"
     ],
-    "allowJs": true,
+    "typeRoots": [
+      "../node_modules/@types", "../src/@types"
+    ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./*"]
     }
-  }
+  },
+  "include": [
+    "./**/*"
+  ]
 }

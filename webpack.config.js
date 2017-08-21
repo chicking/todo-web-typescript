@@ -19,10 +19,7 @@ module.exports = {
         enforce: 'pre',
         test: /\.tsx?$/,
         loader: 'tslint-loader',
-        exclude: /node_modules/,
-        options: {
-          configFile: 'tslint.json'
-        }
+        exclude: /node_modules/
       },
       {
         test: /\.s(a|c)ss$/,
@@ -48,7 +45,6 @@ module.exports = {
         loader: 'ts-loader',
         exclude: /node_modules/,
         options: {
-          configFileName: 'tsconfig.build.json',
           appendTsSuffixTo: [/\.vue$/],
         }
       },
