@@ -13,9 +13,6 @@
     "lib": [
       "dom", "es6"
     ],
-    "typeRoots": [
-      "../../node_modules/@types", "./@types"
-    ],
     "baseUrl": "../../",
     "paths": {
       "@/*": ["src/*"]
