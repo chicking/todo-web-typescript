@@ -4,7 +4,7 @@ import axios from 'axios'
 import { User } from '@/models'
 
 namespace Auth {
-  export interface Data {
+  export interface Data extends Vue {
     user: User
     authenticated: boolean
   }
@@ -13,15 +13,13 @@ namespace Auth {
 declare module 'vue/types/vue' {
   interface Vue {
     $auth: Auth
-    authenticated: boolean
-    user: User
   }
 }
 
 export default class Auth {
 
   private _token: Token = null
-  private watch: Vue = null
+  private watch: Auth.Data = null
 
   constructor(tokenName: string = 'jwt_token') {
     this._token = new Token(tokenName)
@@ -31,13 +29,13 @@ export default class Auth {
     }
 
     this.watch = new Vue({
-      data(): Auth.Data {
+      data() {
         return {
           user: null,
           authenticated: false
         }
       }
-    })
+    }) as Auth.Data
   }
 
   get isAuthenticated(): boolean {
